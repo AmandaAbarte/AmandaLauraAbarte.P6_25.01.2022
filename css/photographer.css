@@ -48,7 +48,7 @@
 .photograph-header .portrait {
   width: 33%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
 }
 .photograph-header .portrait img {
   width: 200px;
@@ -69,6 +69,13 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+
+.images-container img {
+  width: 350px;
+  height: 300px;
+}
+
 
 .modal {
   border-radius: 5px;

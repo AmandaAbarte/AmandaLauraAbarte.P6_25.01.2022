@@ -57,7 +57,7 @@ const photographers = [
     }
 ];
 
-const media = [
+const mediaArray = [
     {
         "id": 342550,
         "photographerId": 82,
@@ -605,15 +605,43 @@ photographers.forEach(function (photographer) {
     photographerName.innerHTML = photographer.name;
     
     const photographerLocation = document.querySelector(".location");
-    photographerLocation.innerHTML = photographer.city + photographer.country;
+    photographerLocation.innerHTML = photographer.city + ", " + photographer.country;
     
     const photographerTagline = document.querySelector(".tagline");
     photographerTagline.innerHTML = photographer.tagline;
 
     const image = document.createElement('img');
     image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographer.portrait);
-    
+
     const imageContainer = document.querySelector(".portrait");
     imageContainer.appendChild(image)
+    
+    mediaArray.forEach(function (media) {
+
+        if(media.photographerId == id) {
+
+        const images = document.createElement('img');
+        images.setAttribute("src","/assets/photographers/" + photographer.name +"/"+ media.image);
+
+        const imagesCard = document.createElement("section");
+        imagesCard.classList.add("images-card");
+
+
+        const title = document.createElement('p');
+        title.innerHTML = media.title;
+
+
+
+
+        const imagesContainer = document.querySelector(".images-container");
+        imagesContainer.appendChild(images);
+        imagesContainer.appendChild(imagesCard);
+        imagesContainer.appendChild(title);
+
+        };
+        
+    });
     }
+    
+    
 });
