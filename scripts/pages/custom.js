@@ -117,4 +117,10 @@ for(let i = 0; i < photographers.length; i++) {
 
     // Append the wrapper iself to the photogprahers list
     photographersWrapper.appendChild(wrapper);
-}
+    
+    
+    //redirection to photographer page
+    wrapper.addEventListener("click", function(){
+        document.location.href = "photographer.html" + "?" + photographers[i].id;
+    });
+};
