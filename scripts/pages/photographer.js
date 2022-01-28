@@ -594,4 +594,26 @@ const media = [
     }
 ];
 
+//gets photogapher id from url
+const id = window.location.search.substr(1);
 
+//checks that id from url matches photographer and exceutes appropriate media
+photographers.forEach(function (photographer) {
+    if (photographer.id == id) {
+    console.log(id);
+    const photographerName = document.querySelector(".name");
+    photographerName.innerHTML = photographer.name;
+    
+    const photographerLocation = document.querySelector(".location");
+    photographerLocation.innerHTML = photographer.city + photographer.country;
+    
+    const photographerTagline = document.querySelector(".tagline");
+    photographerTagline.innerHTML = photographer.tagline;
+
+    const image = document.createElement('img');
+    image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographer.portrait);
+    
+    const imageContainer = document.querySelector(".portrait");
+    imageContainer.appendChild(image)
+    }
+});
