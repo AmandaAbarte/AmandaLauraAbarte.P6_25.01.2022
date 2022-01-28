@@ -629,14 +629,15 @@ photographers.forEach(function (photographer) {
 
         const title = document.createElement('p');
         title.innerHTML = media.title;
+        title.classList.add("title");
 
 
 
 
         const imagesContainer = document.querySelector(".images-container");
-        imagesContainer.appendChild(images);
+        imagesCard.appendChild(images);
+        imagesCard.appendChild(title);
         imagesContainer.appendChild(imagesCard);
-        imagesContainer.appendChild(title);
 
         };
         
