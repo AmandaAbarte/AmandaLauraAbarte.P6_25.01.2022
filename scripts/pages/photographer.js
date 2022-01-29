@@ -600,49 +600,81 @@ const id = window.location.search.substr(1);
 //checks that id from url matches photographer and exceutes appropriate media
 photographers.forEach(function (photographer) {
     if (photographer.id == id) {
-    console.log(id);
-    const photographerName = document.querySelector(".name");
-    photographerName.innerHTML = photographer.name;
-    
-    const photographerLocation = document.querySelector(".location");
-    photographerLocation.innerHTML = photographer.city + ", " + photographer.country;
-    
-    const photographerTagline = document.querySelector(".tagline");
-    photographerTagline.innerHTML = photographer.tagline;
-
-    const image = document.createElement('img');
-    image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographer.portrait);
-
-    const imageContainer = document.querySelector(".portrait");
-    imageContainer.appendChild(image)
-    
-    mediaArray.forEach(function (media) {
-
-        if(media.photographerId == id) {
-
-        const images = document.createElement('img');
-        images.setAttribute("src","/assets/photographers/" + photographer.name +"/"+ media.image);
-
-        const imagesCard = document.createElement("section");
-        imagesCard.classList.add("images-card");
-
-
-        const title = document.createElement('p');
-        title.innerHTML = media.title;
-        title.classList.add("title");
-
-
-
-
-        const imagesContainer = document.querySelector(".images-container");
-        imagesCard.appendChild(images);
-        imagesCard.appendChild(title);
-        imagesContainer.appendChild(imagesCard);
-
-        };
+        console.log(id);
+        const photographerName = document.querySelector(".name");
+        photographerName.innerHTML = photographer.name;
         
-    });
+        const photographerLocation = document.querySelector(".location");
+        photographerLocation.innerHTML = photographer.city + ", " + photographer.country;
+        
+        const photographerTagline = document.querySelector(".tagline");
+        photographerTagline.innerHTML = photographer.tagline;
+
+        const image = document.createElement('img');
+        image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographer.portrait);
+
+        const imageContainer = document.querySelector(".portrait");
+        imageContainer.appendChild(image)
+        
+        mediaArray.forEach(function (media) {
+
+            if (media.photographerId == id) {
+
+                const images = document.createElement('img');
+                images.setAttribute("src","/assets/photographers/" + photographer.name +"/"+ media.image);
+
+                const imagesCard = document.createElement("section");
+                imagesCard.classList.add("images-card");
+
+                const title = document.createElement('p');
+                title.innerHTML = media.title;
+                title.classList.add("title");
+                
+                const likes = document.createElement('p');
+                likes.innerHTML = media.likes;
+                likes.classList.add("likes");
+
+                const heart = document.createElement("i");
+                heart.classList.add("far", "fa-heart");
+
+                //when heart is clicked, likes increase and heart is filled
+                heart.addEventListener("click", function(){
+                    if (heart.className == "far", "fa-heart"){
+                    media.likes++;
+                    console.log(media.likes);
+                    likes.innerHTML = media.likes;
+                    heart.classList.add("fas");
+                    heart.classList.remove("far");
+                    } 
+                    else if (heart.className == "fas", "fa-heart"){
+                    media.likes--;
+                    console.log(media.likes);
+                    likes.innerHTML = media.likes;
+                    heart.classList.remove("fas");
+                    heart.classList.add("far");
+                    }
+                });
+                
+
+                const imagesContainer = document.querySelector(".images-container");
+                imagesCard.appendChild(images);
+                imagesCard.appendChild(title);
+                imagesCard.appendChild(likes);
+                imagesCard.appendChild(heart);
+                imagesContainer.appendChild(imagesCard);
+            }
+            
+        });
     }
-    
-    
 });
+
+// let heartClass = document.querySelector(".heart");
+// document.querySelector(".heart").addEventListener("click", function(e) {
+//     console.log(media.likes);
+//     let likesAmount = media.likes;
+//     likes.innerHTML = likesAmount++;
+//     console.log('checckckckc');
+//     console.log(this);
+//     console.log(e);
+
+// });
