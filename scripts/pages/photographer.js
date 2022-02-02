@@ -616,12 +616,13 @@ photographers.forEach(function (photographer) {
         const imageContainer = document.querySelector(".portrait");
         imageContainer.appendChild(image)
         
-
+        //shows total number of likes and price of photographer
         const photographerStats= document.querySelector(".photograph-stats");
         let totalLikes = 0;
         const likesCounterContainer = document.createElement("div");
         likesCounterContainer.classList.add("likes-container");
         photographerStats.appendChild(likesCounterContainer);
+
         const totalLikesCounter = document.createElement("p");
         totalLikesCounter.classList.add("totalLikes");
         
@@ -682,6 +683,7 @@ photographers.forEach(function (photographer) {
 
                 totalLikesCounter.innerHTML = totalLikes;
                 
+                //media and information about media created and appended
                 const imagesContainer = document.querySelector(".images-container");
                 imagesContainer.appendChild(imagesCard);
                 imagesCard.appendChild(images);
@@ -703,14 +705,3 @@ photographers.forEach(function (photographer) {
         
     }
 });
-
-// let heartClass = document.querySelector(".heart");
-// document.querySelector(".heart").addEventListener("click", function(e) {
-//     console.log(media.likes);
-//     let likesAmount = media.likes;
-//     likes.innerHTML = likesAmount++;
-//     console.log('checckckckc');
-//     console.log(this);
-//     console.log(e);
-
-// });

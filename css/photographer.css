@@ -9,7 +9,6 @@
   margin: 0 100px;
   border-radius: 5px;
 }
-
 .photograph-header .photographer-info {
   width: 33%;
   display: flex;
@@ -32,7 +31,6 @@
   line-height: 45px;
   color: #901c1c;
 }
-
 .photograph-header .photographer-info .tagline {
   font-family: DM Sans;
   font-style: normal;
@@ -42,7 +40,6 @@
 
   color: #525252;
 }
-
 .photograph-header .portrait {
   width: 33%;
   display: flex;
@@ -53,8 +50,8 @@
   height: 200px;
   object-fit: cover;
   border-radius: 50%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 }
-
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -66,6 +63,9 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+.contact_button:hover {
+  background-color: #DB8876;
 }
 
 .images-container {
@@ -87,7 +87,6 @@
   display: flex;
   justify-content: space-between;
 }
-
 .images-container .images-card .images-info .images-likes {
   display: flex;
   align-items: center;
@@ -104,7 +103,6 @@
 .images-container .images-card .images-info .images-likes .likes {
   margin-right: 10px ;
 }
-
 .images-container .images-card .title {
   font-family: DM Sans;
   font-style: normal;
@@ -114,6 +112,7 @@
 
   color: #911c1c;
 }
+
 
 .photograph-stats {
   position: fixed;
