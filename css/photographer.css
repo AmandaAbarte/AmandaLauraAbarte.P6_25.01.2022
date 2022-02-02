@@ -77,7 +77,9 @@
 .images-container .images-card {
   margin-top: 50px;
 }
-.images-container img {
+.images-container img, 
+.images-container video{
+  
   width: 350px;
   height: 300px;
   object-fit: cover;

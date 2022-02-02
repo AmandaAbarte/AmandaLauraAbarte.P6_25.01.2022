@@ -610,6 +610,7 @@ const id = urlParams.get("id");
 const photographer = photographers.filter((item) => item.id == id)[0];
 
 console.log(id);
+//Populates Photographer header section
 const photographerName = document.querySelector(".name");
 photographerName.innerHTML = photographer.name;
 
@@ -625,13 +626,13 @@ image.setAttribute(
   "src",
   "/assets/photographers/Photographers ID Photos/" + photographer.portrait
 );
-
 const imageContainer = document.querySelector(".portrait");
 imageContainer.appendChild(image);
 
 //shows total number of likes and price of photographer
 const photographerStats = document.querySelector(".photograph-stats");
 let totalLikes = 0;
+
 const likesCounterContainer = document.createElement("div");
 likesCounterContainer.classList.add("likes-container");
 photographerStats.appendChild(likesCounterContainer);
@@ -641,17 +642,19 @@ totalLikesCounter.classList.add("totalLikes");
 
 const heartTotal = document.createElement("i");
 heartTotal.classList.add("fas", "fa-heart");
+
 const price = document.createElement("p");
 price.classList.add("price");
 price.innerHTML = photographer.price + "$/ Day";
+
 likesCounterContainer.appendChild(totalLikesCounter);
 likesCounterContainer.appendChild(heartTotal);
 photographerStats.appendChild(price);
 
-const filteredMediaArray = mediaArray.filter(
-  (item) => item.photographerId == id
-);
+//Filter through mediaArray for matches with photographer id
+const filteredMediaArray = mediaArray.filter((item) => item.photographerId == id);
 
+//loops over each media that matches photographer id and then excecutes accordingly
 filteredMediaArray.forEach(function (media) {
   let imgOrVid;
 
@@ -678,14 +681,15 @@ filteredMediaArray.forEach(function (media) {
   imageCard.classList.add("images-card");
 
   const title = document.createElement("p");
-  title.innerHTML = media.title;
   title.classList.add("title");
+  title.innerHTML = media.title;
 
   const likes = document.createElement("p");
-  likes.innerHTML = media.likes;
   likes.classList.add("likes");
+  likes.innerHTML = media.likes;
   totalLikes = totalLikes + media.likes;
 
+  //Heart button
   const heart = document.createElement("i");
   heart.classList.add("far", "fa-heart");
 
@@ -718,14 +722,14 @@ filteredMediaArray.forEach(function (media) {
   imagesContainer.appendChild(imageCard);
   imageCard.appendChild(imgOrVid);
 
-  const imagesInfo = document.createElement("section");
-  imagesInfo.classList.add("images-info");
-  imagesInfo.appendChild(title);
-  imageCard.appendChild(imagesInfo);
+  const imageInfo = document.createElement("section");
+  imageInfo.classList.add("images-info");
+  imageInfo.appendChild(title);
+  imageCard.appendChild(imageInfo);
 
   const imagesLikes = document.createElement("div");
   imagesLikes.classList.add("images-likes");
-  imagesInfo.appendChild(imagesLikes);
+  imageInfo.appendChild(imagesLikes);
   imagesLikes.appendChild(likes);
   imagesLikes.appendChild(heart);
 });
