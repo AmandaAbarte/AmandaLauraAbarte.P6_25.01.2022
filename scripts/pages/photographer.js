@@ -616,6 +616,9 @@ photographers.forEach(function (photographer) {
         const imageContainer = document.querySelector(".portrait");
         imageContainer.appendChild(image)
         
+        let totalLikes = 0;
+        const totalLikesCounter = document.querySelector(".photograph-stats");
+
         mediaArray.forEach(function (media) {
 
             if (media.photographerId == id) {
@@ -633,29 +636,35 @@ photographers.forEach(function (photographer) {
                 const likes = document.createElement('p');
                 likes.innerHTML = media.likes;
                 likes.classList.add("likes");
+                totalLikes = totalLikes + media.likes;
 
                 const heart = document.createElement("i");
                 heart.classList.add("far", "fa-heart");
 
-                //when heart is clicked, likes increase and heart is filled
-                heart.addEventListener("click", function(){
-                    if (heart.className == "far", "fa-heart"){
-                    media.likes++;
-                    console.log(media.likes);
-                    likes.innerHTML = media.likes;
-                    heart.classList.add("fas");
-                    heart.classList.remove("far");
-                    } 
-                    else if (heart.className == "fas", "fa-heart"){
-                    media.likes--;
-                    console.log(media.likes);
-                    likes.innerHTML = media.likes;
-                    heart.classList.remove("fas");
-                    heart.classList.add("far");
+                //when heart is clicked, likes increase and heart is filled or decrease if already clicked
+                heart.addEventListener("click", function() {
+                    console.log(heart.className);
+                    if (heart.className.includes('far')) {
+                        media.likes++;
+                        totalLikes++;
+                        totalLikesCounter.innerHTML = totalLikes;
+                        console.log(media.likes);
+                        likes.innerHTML = media.likes;
+                        heart.classList.add("fas");
+                        heart.classList.remove("far");
+                    
+                    } else {
+                        media.likes--;
+                        totalLikes--;
+                        totalLikesCounter.innerHTML = totalLikes;
+                        console.log(media.likes);
+                        likes.innerHTML = media.likes;
+                        heart.classList.remove("fas");
+                        heart.classList.add("far");
+                        
                     }
                 });
                 
-
                 const imagesContainer = document.querySelector(".images-container");
                 imagesCard.appendChild(images);
                 imagesCard.appendChild(title);
@@ -665,6 +674,9 @@ photographers.forEach(function (photographer) {
             }
             
         });
+
+        totalLikesCounter.innerHTML = totalLikes;
+        
     }
 });
 
