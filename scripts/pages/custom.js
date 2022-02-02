@@ -121,6 +121,6 @@ for(let i = 0; i < photographers.length; i++) {
 
     //redirection to photographer page
     wrapper.addEventListener("click", function(){
-        document.location.href = "photographer.html" + "?" + photographers[i].id;
+        document.location.href = "photographer.html" + "?id=" + photographers[i].id;
     });
 };
