@@ -616,8 +616,23 @@ photographers.forEach(function (photographer) {
         const imageContainer = document.querySelector(".portrait");
         imageContainer.appendChild(image)
         
+
+        const photographerStats= document.querySelector(".photograph-stats");
         let totalLikes = 0;
-        const totalLikesCounter = document.querySelector(".photograph-stats");
+        const likesCounterContainer = document.createElement("div");
+        likesCounterContainer.classList.add("likes-container");
+        photographerStats.appendChild(likesCounterContainer);
+        const totalLikesCounter = document.createElement("p");
+        totalLikesCounter.classList.add("totalLikes");
+        
+        const heartTotal = document.createElement("i");
+        heartTotal.classList.add("fas", "fa-heart");
+        const price = document.createElement("p");
+        price.classList.add("price");
+        price.innerHTML = photographer.price + "$/ Day";
+        likesCounterContainer.appendChild(totalLikesCounter);
+        likesCounterContainer.appendChild(heartTotal);
+        photographerStats.appendChild(price);
 
         mediaArray.forEach(function (media) {
 
@@ -664,18 +679,27 @@ photographers.forEach(function (photographer) {
                         
                     }
                 });
+
+                totalLikesCounter.innerHTML = totalLikes;
                 
                 const imagesContainer = document.querySelector(".images-container");
-                imagesCard.appendChild(images);
-                imagesCard.appendChild(title);
-                imagesCard.appendChild(likes);
-                imagesCard.appendChild(heart);
                 imagesContainer.appendChild(imagesCard);
+                imagesCard.appendChild(images);
+
+                const imagesInfo = document.createElement("section");
+                imagesInfo.classList.add("images-info");
+                imagesInfo.appendChild(title);
+                imagesCard.appendChild(imagesInfo);
+
+                const imagesLikes = document.createElement("div");
+                imagesLikes.classList.add("images-likes");
+                imagesInfo.appendChild(imagesLikes);
+                imagesLikes.appendChild(likes);
+                imagesLikes.appendChild(heart);
             }
-            
+                
         });
 
-        totalLikesCounter.innerHTML = totalLikes;
         
     }
 });

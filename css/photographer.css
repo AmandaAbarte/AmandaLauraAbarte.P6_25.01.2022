@@ -85,6 +85,28 @@
   object-fit: cover;
   border-radius: 5px;
 }
+.images-container .images-card .images-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.images-container .images-card .images-info .images-likes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31px;
+  text-align: right;
+
+  color: #911c1c;
+}
+.images-container .images-card .images-info .images-likes .likes {
+  margin-right: 10px ;
+}
+
 .images-container .images-card .title {
   font-family: DM Sans;
   font-style: normal;
@@ -93,6 +115,35 @@
   line-height: 31px;
 
   color: #911c1c;
+}
+
+.photograph-stats {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 89px;
+  width: 376px;
+  right: 13px;
+  bottom: 0px;
+
+  background: #db8876;
+  border-radius: 5px;
+}
+.photograph-stats .likes-container {
+  display: flex;
+  align-items: center;
+}
+.photograph-stats .likes-container .totalLikes {
+  margin-right: 10px;
+}
+.photograph-stats p {
+  font-family: DM Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31px;
+  text-align: right;
 }
 
 .modal {
