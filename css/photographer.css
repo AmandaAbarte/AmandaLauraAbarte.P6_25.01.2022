@@ -1,6 +1,4 @@
-#contact_modal {
-  display: none;
-}
+
 
 .photograph-header {
   display: flex;
@@ -146,7 +144,15 @@
   text-align: right;
 }
 
+
+#contact_modal {
+  display: none;
+}
+
 .modal {
+  position: fixed;
+  top: 10%;
+  left: 25%;
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
