@@ -115,6 +115,12 @@
   color: #911c1c;
 }
 
+.filled {
+  font-weight: 900;
+}
+.empty {
+  font-weight: 400;
+}
 
 .photograph-stats {
   position: fixed;

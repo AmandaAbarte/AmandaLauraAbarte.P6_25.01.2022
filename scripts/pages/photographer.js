@@ -691,27 +691,29 @@ filteredMediaArray.forEach(function (media) {
 
   //Heart button
   const heart = document.createElement("i");
-  heart.classList.add("far", "fa-heart");
+  heart.classList.add("far", "fa-heart","empty");
 
   //when heart is clicked, likes increase and heart is filled or decrease if already clicked
   heart.addEventListener("click", function () {
     console.log(heart.className);
-    if (heart.className.includes("far")) {
+    if (heart.className.includes("empty")) {
       media.likes++;
       totalLikes++;
       totalLikesCounter.innerHTML = totalLikes;
       console.log(media.likes);
       likes.innerHTML = media.likes;
       heart.classList.add("fas");
-      heart.classList.remove("far");
+    //   heart.classList.remove("far");
+      heart.classList.toggle("empty");
     } else {
-      media.likes--;
-      totalLikes--;
-      totalLikesCounter.innerHTML = totalLikes;
-      console.log(media.likes);
-      likes.innerHTML = media.likes;
-      heart.classList.remove("fas");
-      heart.classList.add("far");
+        media.likes--;
+        totalLikes--;
+        totalLikesCounter.innerHTML = totalLikes;
+        console.log(media.likes);
+        likes.innerHTML = media.likes;
+          heart.classList.remove("fas");
+        //   heart.classList.add("far");
+        heart.classList.toggle("empty");
     }
   });
 
