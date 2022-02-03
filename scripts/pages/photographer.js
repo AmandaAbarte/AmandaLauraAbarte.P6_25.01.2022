@@ -665,6 +665,7 @@ filteredMediaArray.forEach(function (media) {
       "src",
       "/assets/photographers/" + photographer.name + "/" + media.image
     );
+    imgOrVid.setAttribute("data-fancybox", "gallery");
   } else {
     // Create a video tag & add the "video" attribute as src
     imgOrVid = document.createElement("video");
@@ -675,6 +676,7 @@ filteredMediaArray.forEach(function (media) {
       "/assets/photographers/" + photographer.name + "/" + media.video
     );
     imgOrVid.appendChild(videoSrc);
+    imgOrVid.setAttribute("data-fancybox", "gallery");
   }
 
   const imageCard = document.createElement("section");
@@ -734,4 +736,7 @@ filteredMediaArray.forEach(function (media) {
   imageInfo.appendChild(imagesLikes);
   imagesLikes.appendChild(likes);
   imagesLikes.appendChild(heart);
+
+  
+
 });
