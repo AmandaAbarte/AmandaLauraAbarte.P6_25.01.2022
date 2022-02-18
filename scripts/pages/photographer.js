@@ -669,14 +669,15 @@ filteredMediaArray.forEach(function (media) {
   } else {
     // Create a video tag & add the "video" attribute as src
     imgOrVid = document.createElement("video");
-    imgOrVid.controls = true;
     const videoSrc = document.createElement("source");
-    videoSrc.setAttribute(
-      "src",
-      "/assets/photographers/" + photographer.name + "/" + media.video
-    );
+    videoSrc.setAttribute("src", "/assets/photographers/" + photographer.name + "/" + media.video);
+
+    imgOrVid.setAttribute("data-fancybox","video-gallery");
+    imgOrVid.setAttribute("data-type", "mp4");
+    // imgOrVid.setAttribute("data-preload", "false");
+    imgOrVid.controls = true;
     imgOrVid.appendChild(videoSrc);
-    imgOrVid.setAttribute("data-fancybox", "gallery");
+    
   }
 
   const imageCard = document.createElement("section");
