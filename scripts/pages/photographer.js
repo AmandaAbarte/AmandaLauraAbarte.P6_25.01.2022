@@ -495,15 +495,6 @@ const mediaArray = [
     price: 60,
   },
   {
-    id: 952343423,
-    photographerId: 930,
-    title: "Tricks in te air",
-    video: "Sport_Tricks_in_the_air.mp4",
-    likes: 150,
-    date: "2018-02-30",
-    price: 70,
-  },
-  {
     id: 235234343,
     photographerId: 930,
     title: "Climber",
@@ -585,6 +576,15 @@ const mediaArray = [
     price: 58,
   },
   {
+    id: 952343423,
+    photographerId: 930,
+    title: "Tricks in te air",
+    video: "Sport_Tricks_in_the_air.mp4",
+    likes: 150,
+    date: "2018-02-30",
+    price: 70,
+  },
+  {
     id: 777723343,
     photographerId: 930,
     title: "Connected Curves",
@@ -601,6 +601,13 @@ const mediaArray = [
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
+
+/**
+ * SOLID Principles
+ * S -> Single Responsibility Principle
+ */
+
+
 //checks that id from url matches photographer and exceutes appropriate media
 /**
  * 1. Filter all photographers by "id" sent in the search params
@@ -609,7 +616,6 @@ const id = urlParams.get("id");
  */
 const photographer = photographers.filter((item) => item.id == id)[0];
 
-console.log(id);
 //Populates Photographer header section
 const photographerName = document.querySelector(".name");
 photographerName.innerHTML = photographer.name;
@@ -652,92 +658,182 @@ likesCounterContainer.appendChild(heartTotal);
 photographerStats.appendChild(price);
 
 //Filter through mediaArray for matches with photographer id
-const filteredMediaArray = mediaArray.filter((item) => item.photographerId == id);
+const filteredMediaArray = mediaArray.filter(
+  (item) => item.photographerId == id
+);
 
-//loops over each media that matches photographer id and then excecutes accordingly
-filteredMediaArray.forEach(function (media) {
-  let imgOrVid;
+console.log(filteredMediaArray);
 
-  // Add image or video, depending on available media source
-  if (media.image) {
-    imgOrVid = document.createElement("img");
-    imgOrVid.setAttribute(
-      "src",
-      "/assets/photographers/" + photographer.name + "/" + media.image
-    );
-    imgOrVid.setAttribute("data-fancybox", "gallery");
-  } else {
-    // Create a video tag & add the "video" attribute as src
-    imgOrVid = document.createElement("video");
-    const videoSrc = document.createElement("source");
-    videoSrc.setAttribute("src", "/assets/photographers/" + photographer.name + "/" + media.video);
+renderGallery();
 
-    imgOrVid.setAttribute("data-fancybox","video-gallery");
-    imgOrVid.setAttribute("data-type", "mp4");
-    // imgOrVid.setAttribute("data-preload", "false");
-    imgOrVid.controls = true;
-    imgOrVid.appendChild(videoSrc);
-    
-  }
+/**
+ * Filter by Popularity: Most likes.
+ */
 
-  const imageCard = document.createElement("section");
-  imageCard.classList.add("images-card");
+//reorder the media according to paramaters selected
+var select = document.querySelector("select");
 
-  const title = document.createElement("p");
-  title.classList.add("title");
-  title.innerHTML = media.title;
+//sorts media by likes
 
-  const likes = document.createElement("p");
-  likes.classList.add("likes");
-  likes.innerHTML = media.likes;
-  totalLikes = totalLikes + media.likes;
+/**
+ * Render the images & videos
+ */
+function renderGallery() {
+  // Empty the inner content
+  const imagesContainer = document.querySelector(".images-container");
+  imagesContainer.innerHTML = "";
 
-  //Heart button
-  const heart = document.createElement("i");
-  heart.classList.add("far", "fa-heart","empty");
+  // Then, Loops over each media that matches photographer id and then excecutes accordingly
+  filteredMediaArray.forEach(function (media) {
+    let imgOrVid;
 
-  //when heart is clicked, likes increase and heart is filled or decrease if already clicked
-  heart.addEventListener("click", function () {
-    console.log(heart.className);
-    if (heart.className.includes("empty")) {
-      media.likes++;
-      totalLikes++;
-      totalLikesCounter.innerHTML = totalLikes;
-      console.log(media.likes);
-      likes.innerHTML = media.likes;
-      heart.classList.add("fas");
-    //   heart.classList.remove("far");
-      heart.classList.toggle("empty");
+    // Add image or video, depending on available media source
+    if (media.image) {
+      imgOrVid = document.createElement("img");
+      imgOrVid.setAttribute(
+        "src",
+        "/assets/photographers/" + photographer.name + "/" + media.image
+      );
+      imgOrVid.setAttribute("data-fancybox", "gallery");
     } else {
+      // Create a video tag & add the "video" attribute as src
+      imgOrVid = document.createElement("video");
+      const videoSrc = document.createElement("source");
+      videoSrc.setAttribute(
+        "src",
+        "/assets/photographers/" + photographer.name + "/" + media.video
+      );
+
+      imgOrVid.setAttribute("data-fancybox", "video-gallery");
+      imgOrVid.setAttribute("data-type", "mp4");
+      // imgOrVid.setAttribute("data-preload", "false");
+      imgOrVid.controls = true;
+      imgOrVid.appendChild(videoSrc);
+    }
+
+    const imageCard = document.createElement("section");
+    imageCard.classList.add("images-card");
+
+    const title = document.createElement("p");
+    title.classList.add("title");
+    title.innerHTML = media.title;
+
+    const date = document.createElement("p");
+    date.classList.add("date");
+    date.innerHTML = media.date;
+
+    const likes = document.createElement("p");
+    likes.classList.add("likes");
+    likes.innerHTML = media.likes;
+    totalLikes = totalLikes + media.likes;
+
+    //Heart button
+    const heart = document.createElement("i");
+    heart.classList.add("far", "fa-heart", "empty");
+
+    //when heart is clicked, likes increase and heart is filled or decrease if already clicked
+    heart.addEventListener("click", function () {
+      console.log(heart.className);
+      if (heart.className.includes("empty")) {
+        media.likes++;
+        totalLikes++;
+        totalLikesCounter.innerHTML = totalLikes;
+        console.log(media.likes);
+        likes.innerHTML = media.likes;
+        heart.classList.add("fas");
+        //   heart.classList.remove("far");
+        heart.classList.toggle("empty");
+      } else {
         media.likes--;
         totalLikes--;
         totalLikesCounter.innerHTML = totalLikes;
         console.log(media.likes);
         likes.innerHTML = media.likes;
-          heart.classList.remove("fas");
+        heart.classList.remove("fas");
         //   heart.classList.add("far");
         heart.classList.toggle("empty");
-    }
+      }
+    });
+
+    totalLikesCounter.innerHTML = totalLikes;
+
+    //media and information about media created and appended
+    imagesContainer.appendChild(imageCard);
+    imageCard.appendChild(imgOrVid);
+
+    const imageInfo = document.createElement("section");
+    imageInfo.classList.add("images-info");
+    imageInfo.appendChild(title);
+    imageInfo.appendChild(date);
+    imageCard.appendChild(imageInfo);
+
+    const imagesLikes = document.createElement("div");
+    imagesLikes.classList.add("images-likes");
+    imageInfo.appendChild(imagesLikes);
+    imagesLikes.appendChild(likes);
+    imagesLikes.appendChild(heart);
   });
+}
 
-  totalLikesCounter.innerHTML = totalLikes;
+/**
+ * Filter / Sort by
+ */
+function sortBy(type) {
+  console.log(type);
 
-  //media and information about media created and appended
-  const imagesContainer = document.querySelector(".images-container");
-  imagesContainer.appendChild(imageCard);
-  imageCard.appendChild(imgOrVid);
+  switch (type) {
+    case "title":
+      console.log("Filter by title");
+      filteredMediaArray.sort(sortByTitle);
+      break;
 
-  const imageInfo = document.createElement("section");
-  imageInfo.classList.add("images-info");
-  imageInfo.appendChild(title);
-  imageCard.appendChild(imageInfo);
+    case "date":
+      console.log("Filter by date");
+      filteredMediaArray.sort(sortByDate);
+      break;
 
-  const imagesLikes = document.createElement("div");
-  imagesLikes.classList.add("images-likes");
-  imageInfo.appendChild(imagesLikes);
-  imagesLikes.appendChild(likes);
-  imagesLikes.appendChild(heart);
+    case "popularity":
+      filteredMediaArray.sort(sortByLikes);
+      break;
+  }
 
-  
+  // After sorting, re-render the gallery.
+  renderGallery();
+}
 
+select.addEventListener("change", function () {
+  // console.log(option.value);
+  var select = document.querySelector("select");
+  var type = select.options[select.selectedIndex].value;
+  sortBy(type);
 });
+
+function sortByDate(a, b) {
+  if (a.date < b.date) {
+    return 1;
+  }
+  if (a.date > b.date) {
+    return -1;
+  }
+  return 0;
+}
+
+function sortByTitle(a, b) {
+  if (a.title < b.title) {
+    return -1;
+  }
+  if (a.title > b.title) {
+    return 1;
+  }
+  return 0;
+}
+
+function sortByLikes(a, b) {
+  if (a.likes < b.likes) {
+    return 1;
+  }
+  if (a.likes > b.likes) {
+    return -1;
+  }
+  return 0;
+}
