@@ -56,23 +56,32 @@
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
       <form>
-        <div>
-          <label>First name</label>
-          <input />
+        <div class="formData">
+          <label for="first">First Name</label><br>
+          <input class="text-control" type="text" id="first" name="first" /><br>
+          <span class="input-error hide" id="first_name_error"></span>
         </div>
-        <div>
-          <label>Last name</label>
-          <input />
+
+        <div class="formData">
+          <label for="last">Last Name</label><br>
+          <input class="text-control" type="text" id="last" name="last" />
+          <span class="input-error hide" id="last_name_error"></span>
+          <br>
         </div>
-        <div>
-          <label>Email</label>
-          <input />
+        
+        <div class="formData">
+          <label for="email">Email</label><br>
+          <input class="text-control" type="email" id="email" name="email" /><br>
+          <span class="input-error hide" id="email_error"></span>
         </div>
-        <div>
-          <label>Your Message</label>
-          <input />
+
+        <div class="formData">
+          <label for="message">Your Message</label><br>
+          <input class="text-control" type="text" id="message" name="message" />
+          <span class="input-error hide" id="message_error"></span>
+          <br>
         </div>
-        <button class="contact_button">Send</button>
+        <button class="contact_button" type="submit">Send</button>
       </form>
     </div>
   </div>
