@@ -30,16 +30,35 @@
     <div class="order-by">
       <p>Order By</p>
 
-      <div class="filter">
-        <select class="select">
-          <option value="popularity">Popularity </option>
-          <option value="date">Date</option>
-          <option value="title">Title</option>
-        </select>
-        <i class="selector fas fa-solid fa-chevron-down"></i>
+      <div class="select-box">
+      <div class="options-container">
+        <div class="option">
+          <input type="radio" class="radio" id="popularity" name="category" />
+          <label for="popularity">
+            Popular
+          </label>
+        </div>
+
+        <div class="option">
+          <input type="radio" class="radio" id="date" name="category" />
+          <label for="date">
+            Date
+          </label>
+        </div>
+
+        <div class="option">
+          <input type="radio" class="radio" id="title" name="category" />
+          <label for="title">
+            Title
+          </label>
+        </div>
+
+      </div>
+      <div class="selected">
+        <h3>Popular</h3>
+      </div>
       </div>
     </div>
-
     <section class="images-container">
 
     </section>
@@ -68,7 +87,7 @@
           <span class="input-error hide" id="last_name_error"></span>
           <br>
         </div>
-        
+
         <div class="formData">
           <label for="email">Email</label><br>
           <input class="text-control" type="email" id="email" name="email" /><br>
@@ -87,6 +106,7 @@
   </div>
 
   <script src="/scripts/utils/contactForm.js"></script>
+  <script src="/scripts/utils/customSelect.js"></script>
   <script src="scripts/pages/photographer.js"></script>
   <script type="module">
     import { Fancybox } from "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.esm.js";

@@ -617,25 +617,30 @@ const id = urlParams.get("id");
 const photographer = photographers.filter((item) => item.id == id)[0];
 
 //Populates Photographer header section
-const photographerName = document.querySelector(".name");
-photographerName.innerHTML = photographer.name;
-
-const photographerLocation = document.querySelector(".location");
-photographerLocation.innerHTML =
-  photographer.city + ", " + photographer.country;
-
-const photographerTagline = document.querySelector(".tagline");
-photographerTagline.innerHTML = photographer.tagline;
-
-const image = document.createElement("img");
-image.setAttribute(
-  "src",
-  "/assets/photographers/Photographers ID Photos/" + photographer.portrait
-);
-const imageContainer = document.querySelector(".portrait");
-imageContainer.appendChild(image);
+function photographerHeader() {
+  
+  const photographerName = document.querySelector(".name");
+  photographerName.innerHTML = photographer.name;
+  
+  const photographerLocation = document.querySelector(".location");
+  photographerLocation.innerHTML =
+    photographer.city + ", " + photographer.country;
+  
+  const photographerTagline = document.querySelector(".tagline");
+  photographerTagline.innerHTML = photographer.tagline;
+  
+  const image = document.createElement("img");
+  image.setAttribute(
+    "src",
+    "/assets/photographers/Photographers ID Photos/" + photographer.portrait
+  );
+  const imageContainer = document.querySelector(".portrait");
+  imageContainer.appendChild(image);
+}
+photographerHeader ();
 
 //shows total number of likes and price of photographer
+
 const photographerStats = document.querySelector(".photograph-stats");
 let totalLikes = 0;
 
@@ -778,35 +783,40 @@ function renderGallery() {
 /**
  * Filter / Sort by
  */
-function sortBy(type) {
-  console.log(type);
 
-  switch (type) {
+const selected = document.querySelector(".selected");
+const optionsContainer = document.querySelector(".options-container");
+const optionsList = document.querySelectorAll(".option");
+
+//on click opens and closes dropdown
+selected.addEventListener("click", () => {
+  optionsContainer.classList.toggle("active");
+});
+
+optionsContainer.addEventListener("change", function(e) {
+  let target = e.target
+  
+  switch (target.id) {
     case "title":
       console.log("Filter by title");
       filteredMediaArray.sort(sortByTitle);
-      break;
+          break;
+          
+          case "date":
+            console.log("Filter by date");
+            filteredMediaArray.sort(sortByDate);
+            break;
+            
+            case "popularity":
+          filteredMediaArray.sort(sortByLikes);
+          break;
+        }
 
-    case "date":
-      console.log("Filter by date");
-      filteredMediaArray.sort(sortByDate);
-      break;
+        //after done, closes dropdown and re-renders gallery
+        optionsContainer.classList.toggle("active");
+        renderGallery();
+      });
 
-    case "popularity":
-      filteredMediaArray.sort(sortByLikes);
-      break;
-  }
-
-  // After sorting, re-render the gallery.
-  renderGallery();
-}
-
-select.addEventListener("change", function () {
-  // console.log(option.value);
-  var select = document.querySelector("select");
-  var type = select.options[select.selectedIndex].value;
-  sortBy(type);
-});
 
 function sortByDate(a, b) {
   if (a.date < b.date) {
@@ -837,3 +847,4 @@ function sortByLikes(a, b) {
   }
   return 0;
 }
+    
