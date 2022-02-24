@@ -795,15 +795,18 @@ optionsContainer.addEventListener("change", function (e) {
     case "title":
       console.log("Filter by title");
       filteredMediaArray.sort(sortByTitle);
+      selected.innerHTML = "Title";
       break;
-
-    case "date":
-      console.log("Filter by date");
-      filteredMediaArray.sort(sortByDate);
-      break;
-
-    case "popularity":
-      filteredMediaArray.sort(sortByLikes);
+      
+      case "date":
+        console.log("Filter by date");
+        filteredMediaArray.sort(sortByDate);
+        selected.innerHTML = "Date";
+        break;
+        
+        case "popularity":
+          filteredMediaArray.sort(sortByLikes);
+          selected.innerHTML = "Popularity";
       break;
   }
 
