@@ -74,30 +74,30 @@
         <h2>Contact me</h2>
         <img src="assets/icons/close.svg" onclick="closeModal()" />
       </header>
-      <form>
+      <form id="form">
         <div class="formData">
           <label for="first">First Name</label><br>
+          <span class="input-error " id="first_name_error"></span>
           <input class="text-control" type="text" id="first" name="first" /><br>
-          <span class="input-error hide" id="first_name_error"></span>
         </div>
 
         <div class="formData">
           <label for="last">Last Name</label><br>
+          <div class="input-error " id="last_name_error"></div>
           <input class="text-control" type="text" id="last" name="last" />
-          <span class="input-error hide" id="last_name_error"></span>
           <br>
         </div>
 
         <div class="formData">
           <label for="email">Email</label><br>
+          <span class="input-error " id="email_error"></span>
           <input class="text-control" type="email" id="email" name="email" /><br>
-          <span class="input-error hide" id="email_error"></span>
         </div>
 
         <div class="formData">
           <label for="message">Your Message</label><br>
+          <span class="input-error " id="message_error"></span>
           <input class="text-control" type="text" id="message" name="message" />
-          <span class="input-error hide" id="message_error"></span>
           <br>
         </div>
         <button class="contact_button" type="submit">Send</button>

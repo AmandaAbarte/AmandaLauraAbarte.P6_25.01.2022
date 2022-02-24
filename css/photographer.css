@@ -83,13 +83,13 @@
   display: flex;
   width: 170px;
   flex-direction: column;
-	position: relative;
+  position: relative;
   color: white;
   margin-left: 22px;
 }
 .select-box .options-container {
   max-height: 0;
-  width: calc( 100% - 12px);
+  width: calc(100% - 12px);
   opacity: 0;
   transition: all 0.4s;
   overflow: hidden;
@@ -97,7 +97,7 @@
   border: solid 1px #dcdfe5;
   background-color: #901c1c;
   order: 1;
-	top: 68px;
+  top: 68px;
   position: absolute;
   z-index: 2;
 }
@@ -113,46 +113,46 @@
   order: 0;
 }
 .selected::after {
-	/* Font Awesome	 */
-	content: "\f078";
-	font-family: "Font Awesome 5 Free";
-	font-weight: 900;
-	-webkit-font-smoothing: antialiased;
-	display: inline-block;
-	font-style: normal;
-	font-variant: normal;
-	text-rendering: auto;
-	line-height: 1;
-	color: white;
-	/* BG Img	 */
-/* 	content:  url("img/arrow-down.svg");	 */
-	position: absolute;
-	right: 15px;
-	top: 50%;
-	transition: transform .5s;
-	transform: translateY(-50%);
+  /* Font Awesome	 */
+  content: "\f078";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  color: white;
+  /* BG Img	 */
+  /* 	content:  url("img/arrow-down.svg");	 */
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transition: transform 0.5s;
+  transform: translateY(-50%);
 }
 .select-box .options-container.active {
   max-height: 240px;
   opacity: 1;
-	width: 170px;
+  width: 170px;
   position: absolute;
 }
 .select-box .option,
 .selected {
-	display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   padding: 12px 24px;
   cursor: pointer;
-	background: #901c1c;
-	width: 170px;
+  background: #901c1c;
+  width: 170px;
 }
 .select-box .options-container.active + .selected::after {
   transform: translateY(-50%) rotateX(180deg);
 }
 .select-box label {
   cursor: pointer;
-	width:170px;
+  width: 170px;
 }
 .select-box .option .radio {
   display: none;
@@ -219,9 +219,12 @@
   top: -290px;
   left: 240px;
   color: white;
-  background: rgb(144,28,28);
-background: linear-gradient(270deg, rgba(144,28,28,1) 46%, rgba(255,255,255,0) 100%);
-  
+  background: rgb(144, 28, 28);
+  background: linear-gradient(
+    270deg,
+    rgba(144, 28, 28, 1) 46%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 .filled {
   font-weight: 900;
@@ -260,12 +263,11 @@ background: linear-gradient(270deg, rgba(144,28,28,1) 46%, rgba(255,255,255,0) 1
   text-align: right;
 }
 
-
 /*Contact form*/
 #contact_modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   left: 0;
   top: 0;
   height: 100%;
@@ -324,10 +326,20 @@ form input {
 }
 form .contact_button {
   font-size: 18px;
-line-height: 23px;
-height: 45px;
-margin-bottom: 30px;
+  line-height: 23px;
+  height: 45px;
+  margin-bottom: 30px;
 }
+form .contact_button:hover {
+  background-color: #901c1c;
+}
+
+.input-error {
+  font-size: 20px;
+  color: white;
+  margin-top: -10px;
+}
+
 .hide {
   display: none;
 }

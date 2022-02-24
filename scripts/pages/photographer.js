@@ -601,12 +601,10 @@ const mediaArray = [
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
-
 /**
  * SOLID Principles
  * S -> Single Responsibility Principle
  */
-
 
 //checks that id from url matches photographer and exceutes appropriate media
 /**
@@ -618,17 +616,16 @@ const photographer = photographers.filter((item) => item.id == id)[0];
 
 //Populates Photographer header section
 function photographerHeader() {
-  
   const photographerName = document.querySelector(".name");
   photographerName.innerHTML = photographer.name;
-  
+
   const photographerLocation = document.querySelector(".location");
   photographerLocation.innerHTML =
     photographer.city + ", " + photographer.country;
-  
+
   const photographerTagline = document.querySelector(".tagline");
   photographerTagline.innerHTML = photographer.tagline;
-  
+
   const image = document.createElement("img");
   image.setAttribute(
     "src",
@@ -637,7 +634,7 @@ function photographerHeader() {
   const imageContainer = document.querySelector(".portrait");
   imageContainer.appendChild(image);
 }
-photographerHeader ();
+photographerHeader();
 
 //shows total number of likes and price of photographer
 
@@ -666,9 +663,7 @@ photographerStats.appendChild(price);
 const filteredMediaArray = mediaArray.filter(
   (item) => item.photographerId == id
 );
-
-console.log(filteredMediaArray);
-
+filteredMediaArray.sort(sortByLikes);
 renderGallery();
 
 /**
@@ -691,7 +686,6 @@ function renderGallery() {
   // Then, Loops over each media that matches photographer id and then excecutes accordingly
   filteredMediaArray.forEach(function (media) {
     let imgOrVid;
-    
 
     // Add image or video, depending on available media source
     if (media.image) {
@@ -794,30 +788,29 @@ selected.addEventListener("click", () => {
   optionsContainer.classList.toggle("active");
 });
 
-optionsContainer.addEventListener("change", function(e) {
-  let target = e.target
+optionsContainer.addEventListener("change", function (e) {
+  let target = e.target;
 
   switch (target.id) {
     case "title":
       console.log("Filter by title");
       filteredMediaArray.sort(sortByTitle);
-          break;
-          
-          case "date":
-            console.log("Filter by date");
-            filteredMediaArray.sort(sortByDate);
-            break;
-            
-            case "popularity":
-          filteredMediaArray.sort(sortByLikes);
-          break;
-        }
+      break;
 
-        //after done, closes dropdown and re-renders gallery
-        optionsContainer.classList.toggle("active");
-        renderGallery();
-      });
+    case "date":
+      console.log("Filter by date");
+      filteredMediaArray.sort(sortByDate);
+      break;
 
+    case "popularity":
+      filteredMediaArray.sort(sortByLikes);
+      break;
+  }
+
+  //after done, closes dropdown and re-renders gallery
+  optionsContainer.classList.toggle("active");
+  renderGallery();
+});
 
 function sortByDate(a, b) {
   if (a.date < b.date) {
@@ -848,4 +841,5 @@ function sortByLikes(a, b) {
   }
   return 0;
 }
-    
+
+
