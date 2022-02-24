@@ -687,10 +687,11 @@ function renderGallery() {
   // Empty the inner content
   const imagesContainer = document.querySelector(".images-container");
   imagesContainer.innerHTML = "";
-
+  
   // Then, Loops over each media that matches photographer id and then excecutes accordingly
   filteredMediaArray.forEach(function (media) {
     let imgOrVid;
+    
 
     // Add image or video, depending on available media source
     if (media.image) {
@@ -795,7 +796,7 @@ selected.addEventListener("click", () => {
 
 optionsContainer.addEventListener("change", function(e) {
   let target = e.target
-  
+
   switch (target.id) {
     case "title":
       console.log("Filter by title");
