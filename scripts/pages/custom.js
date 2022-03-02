@@ -87,7 +87,10 @@ const photographers = [
 const photographersWrapper = document.querySelector('.photographer_section');
 
 for(let i = 0; i < photographers.length; i++) {
-    const wrapper = document.createElement('article');
+    const wrapper = document.createElement('a');
+
+    const photographerCard = document.createElement('article');
+    
 
     const image = document.createElement('img');
     image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographers[i].portrait);
@@ -109,14 +112,15 @@ for(let i = 0; i < photographers.length; i++) {
 
 
     // Append all inner elements to single wrapper
-    wrapper.appendChild(image);
-    wrapper.appendChild(heading);
-    wrapper.appendChild(location);
-    wrapper.appendChild(tagline);
-    wrapper.appendChild(price);
+    photographerCard.appendChild(image);
+    photographerCard.appendChild(heading);
+    photographerCard.appendChild(location);
+    photographerCard.appendChild(tagline);
+    photographerCard.appendChild(price);
 
-    // Append the wrapper iself to the photogprahers list
+    // Append the card iself to the photogprahers list
     photographersWrapper.appendChild(wrapper);
+    wrapper.appendChild(photographerCard);
     
 
     //redirection to photographer page

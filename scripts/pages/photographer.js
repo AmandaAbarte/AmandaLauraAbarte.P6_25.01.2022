@@ -710,8 +710,9 @@ function renderGallery() {
       imgOrVid.controls = true;
       imgOrVid.appendChild(videoSrc);
     }
+    
 
-    const imageCard = document.createElement("section");
+    const imageCard = document.createElement("article");
     imageCard.classList.add("images-card");
 
     const title = document.createElement("p");
