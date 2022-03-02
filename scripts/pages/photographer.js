@@ -631,6 +631,7 @@ function photographerHeader() {
     "src",
     "/assets/photographers/Photographers ID Photos/" + photographer.portrait
   );
+  image.setAttribute("alt", photographer.name);
   const imageContainer = document.querySelector(".portrait");
   imageContainer.appendChild(image);
 }
@@ -682,7 +683,7 @@ function renderGallery() {
   // Empty the inner content
   const imagesContainer = document.querySelector(".images-container");
   imagesContainer.innerHTML = "";
-  
+
   // Then, Loops over each media that matches photographer id and then excecutes accordingly
   filteredMediaArray.forEach(function (media) {
     let imgOrVid;
@@ -695,6 +696,7 @@ function renderGallery() {
         "/assets/photographers/" + photographer.name + "/" + media.image
       );
       imgOrVid.setAttribute("data-fancybox", "gallery");
+      imgOrVid.setAttribute("alt", media.title);
     } else {
       // Create a video tag & add the "video" attribute as src
       imgOrVid = document.createElement("video");
@@ -704,13 +706,13 @@ function renderGallery() {
         "/assets/photographers/" + photographer.name + "/" + media.video
       );
 
+      imgOrVid.setAttribute("alt", media.title);
       imgOrVid.setAttribute("data-fancybox", "video-gallery");
       imgOrVid.setAttribute("data-type", "mp4");
       // imgOrVid.setAttribute("data-preload", "false");
       imgOrVid.controls = true;
       imgOrVid.appendChild(videoSrc);
     }
-    
 
     const imageCard = document.createElement("article");
     imageCard.classList.add("images-card");
@@ -798,16 +800,16 @@ optionsContainer.addEventListener("change", function (e) {
       filteredMediaArray.sort(sortByTitle);
       selected.innerHTML = "Title";
       break;
-      
-      case "date":
-        console.log("Filter by date");
-        filteredMediaArray.sort(sortByDate);
-        selected.innerHTML = "Date";
-        break;
-        
-        case "popularity":
-          filteredMediaArray.sort(sortByLikes);
-          selected.innerHTML = "Popularity";
+
+    case "date":
+      console.log("Filter by date");
+      filteredMediaArray.sort(sortByDate);
+      selected.innerHTML = "Date";
+      break;
+
+    case "popularity":
+      filteredMediaArray.sort(sortByLikes);
+      selected.innerHTML = "Popularity";
       break;
   }
 
@@ -845,5 +847,3 @@ function sortByLikes(a, b) {
   }
   return 0;
 }
-
-

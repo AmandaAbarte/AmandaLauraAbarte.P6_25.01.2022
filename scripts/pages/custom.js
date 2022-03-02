@@ -94,6 +94,7 @@ for(let i = 0; i < photographers.length; i++) {
 
     const image = document.createElement('img');
     image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographers[i].portrait);
+    image.setAttribute("alt", photographers[i].name);
 
     const heading = document.createElement('h2');
     heading.innerHTML = photographers[i].name;
