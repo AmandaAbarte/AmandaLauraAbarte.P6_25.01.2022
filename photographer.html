@@ -19,7 +19,8 @@
 <body>
   <header>
     <a href="/index.html">
-      <img src="assets/images/logo.png" class="logo" alt="logo" /> <span class="alt">Logo</span>
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page" /> <span class="alt">Fisheye Home
+        Page</span>
     </a>
   </header>
 
@@ -39,37 +40,38 @@
       <p>Order By</p>
 
       <div class="select-box">
-      <div class="options-container">
-        <div class="option">
-          <input type="radio" class="radio" id="popularity" name="category" />
-          <label for="popularity">
-            Popularity
-          </label>
+        <div class="options-container">
+          <div class="option" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="popularity">
+            <input type="radio" class="radio" id="popularity" name="category" />
+            <label for="popularity">
+              Popularity
+            </label>
+          </div>
+
+          <div class="option" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="date">
+            <input type="radio" class="radio" id="date" name="category" />
+            <label for="date">
+              Date
+            </label>
+          </div>
+
+          <div class="option" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="title">
+            <input type="radio" class="radio" id="title" name="category" />
+            <label for="title">
+              Title
+            </label>
+          </div>
+
         </div>
 
-        <div class="option">
-          <input type="radio" class="radio" id="date" name="category" />
-          <label for="date">
-            Date
-          </label>
+        <div class="selected" role="button" aria-haspopup="listbox" aria-expanded="">
+          <h2>Popular</h2>
         </div>
 
-        <div class="option">
-          <input type="radio" class="radio" id="title" name="category" />
-          <label for="title">
-            Title
-          </label>
-        </div>
-
-      </div>
-      <div class="selected">
-        <h2>Popular</h2>
-      </div>
       </div>
     </div>
 
     <section class="images-container">
-
     </section>
 
     <section class="photograph-stats">

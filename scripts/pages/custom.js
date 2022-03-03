@@ -87,10 +87,10 @@ const photographers = [
 const photographersWrapper = document.querySelector('.photographer_section');
 
 for(let i = 0; i < photographers.length; i++) {
-    const wrapper = document.createElement('a');
-
-    const photographerCard = document.createElement('article');
     
+    const photographerCard = document.createElement('article');
+    const photographerFocus = document.createElement('a');
+    photographerFocus.setAttribute("tabindex", "0")
 
     const image = document.createElement('img');
     image.setAttribute("src","/assets/photographers/Photographers ID Photos/" + photographers[i].portrait);
@@ -111,21 +111,31 @@ for(let i = 0; i < photographers.length; i++) {
     location.innerHTML = photographers[i].city + ', ' + photographers[i].country;
     location.classList.add('location');
 
+    // Append the card iself to the photogprahers list
+    photographersWrapper.appendChild(photographerCard);
+    photographerCard.appendChild(photographerFocus);
 
     // Append all inner elements to single wrapper
-    photographerCard.appendChild(image);
-    photographerCard.appendChild(heading);
+    photographerFocus.appendChild(image);
+    photographerFocus.appendChild(heading);
     photographerCard.appendChild(location);
     photographerCard.appendChild(tagline);
     photographerCard.appendChild(price);
 
-    // Append the card iself to the photogprahers list
-    photographersWrapper.appendChild(wrapper);
-    wrapper.appendChild(photographerCard);
     
 
-    //redirection to photographer page
-    wrapper.addEventListener("click", function(){
+    function openPhotographer() {
         document.location.href = "photographer.html" + "?id=" + photographers[i].id;
+    }
+    //redirection to photographer page
+    photographerFocus.addEventListener("click", ()=> {
+        openPhotographer();
     });
+    photographerFocus.addEventListener("keyup", (event)=> {
+        var name = event.key;
+        if (name === "Enter") {
+            openPhotographer();
+        }
+    });         
+    
 };
