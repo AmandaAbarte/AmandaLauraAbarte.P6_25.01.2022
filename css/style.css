@@ -18,6 +18,10 @@ header {
   height: 90px;
 }
 
+header .alt {
+  display: none;
+}
+
 h1 {
   font-family: DM Sans;
   font-size: 36px;
@@ -47,6 +51,7 @@ h1 {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
+
 .photographer_section article:hover {
   transform: scale(1.05)  ;
 }
@@ -85,8 +90,6 @@ h1 {
   font-size: 9px;
 }
 
-.photographers-list {
-}
 
 .photographers-list img {
   width: 300px;

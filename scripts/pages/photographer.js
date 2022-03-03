@@ -664,76 +664,71 @@ photographerStats.appendChild(price);
 const filteredMediaArray = mediaArray.filter(
   (item) => item.photographerId == id
 );
+//sorts media by most likes by default
 filteredMediaArray.sort(sortByLikes);
 renderGallery();
 
-/**
- * Filter by Popularity: Most likes.
- */
-
-//reorder the media according to paramaters selected
-var select = document.querySelector("select");
-
-//sorts media by likes
-
-/**
- * Render the images & videos
- */
+//Render the images & videos
+ 
 function renderGallery() {
-  // Empty the inner content
+  // Empty the inner content from previous images + Reset the totalLikes counter
   const imagesContainer = document.querySelector(".images-container");
   imagesContainer.innerHTML = "";
-
+  totalLikes = 0;
+  
   // Then, Loops over each media that matches photographer id and then excecutes accordingly
   filteredMediaArray.forEach(function (media) {
     let imgOrVid;
-
+    
     // Add image or video, depending on available media source
     if (media.image) {
       imgOrVid = document.createElement("img");
       imgOrVid.setAttribute(
         "src",
         "/assets/photographers/" + photographer.name + "/" + media.image
-      );
-      imgOrVid.setAttribute("data-fancybox", "gallery");
-      imgOrVid.setAttribute("alt", media.title);
-    } else {
-      // Create a video tag & add the "video" attribute as src
-      imgOrVid = document.createElement("video");
-      const videoSrc = document.createElement("source");
-      videoSrc.setAttribute(
-        "src",
-        "/assets/photographers/" + photographer.name + "/" + media.video
-      );
+        );
+        imgOrVid.setAttribute("data-fancybox", "video-gallery");
+        imgOrVid.setAttribute("data-fancybox-group", "group1");
+        imgOrVid.setAttribute("alt", media.title);
+      } else {
+        // Create a video tag & add the "video" attribute as src
+        imgOrVid = document.createElement('a');
+        imgOrVid.setAttribute("href", "/assets/photographers/" + photographer.name + "/" + media.video);
+        // `video-gallery` is a must-have for video in fancybox to link it with `gallery` for images
+        imgOrVid.setAttribute("data-fancybox", "video-gallery");
+        
+        // Creating a video, inside a link (which triggers the fancybox)
+        const video = document.createElement("video");
+        const videoSrc = document.createElement("source");
+        videoSrc.setAttribute(
+          "src",
+          "/assets/photographers/" + photographer.name + "/" + media.video
+          );
+          video.setAttribute("data-preload", "false");
+          video.appendChild(videoSrc);
+          imgOrVid.appendChild(video);
+        }
+        
+        const imageCard = document.createElement("article");
+        imageCard.classList.add("images-card");
 
-      imgOrVid.setAttribute("alt", media.title);
-      imgOrVid.setAttribute("data-fancybox", "video-gallery");
-      imgOrVid.setAttribute("data-type", "mp4");
-      // imgOrVid.setAttribute("data-preload", "false");
-      imgOrVid.controls = true;
-      imgOrVid.appendChild(videoSrc);
-    }
-
-    const imageCard = document.createElement("article");
-    imageCard.classList.add("images-card");
-
-    const title = document.createElement("p");
-    title.classList.add("title");
-    title.innerHTML = media.title;
-
-    const date = document.createElement("p");
-    date.classList.add("date");
-    date.innerHTML = media.date;
-
-    const likes = document.createElement("p");
-    likes.classList.add("likes");
-    likes.innerHTML = media.likes;
-    totalLikes = totalLikes + media.likes;
-
-    //Heart button
+        const title = document.createElement("p");
+        title.classList.add("title");
+        title.innerHTML = media.title;
+        
+        const date = document.createElement("p");
+        date.classList.add("date");
+        date.innerHTML = media.date;
+        
+        const likes = document.createElement("p");
+        likes.classList.add("likes");
+        likes.innerHTML = media.likes;
+        totalLikes = totalLikes + media.likes;
+        
+        //Heart button
     const heart = document.createElement("i");
     heart.classList.add("far", "fa-heart", "empty");
-
+    
     //when heart is clicked, likes increase and heart is filled or decrease if already clicked
     heart.addEventListener("click", function () {
       console.log(heart.className);
@@ -763,13 +758,13 @@ function renderGallery() {
     //media and information about media created and appended
     imagesContainer.appendChild(imageCard);
     imageCard.appendChild(imgOrVid);
-
+    
     const imageInfo = document.createElement("section");
     imageInfo.classList.add("images-info");
     imageInfo.appendChild(title);
     imageInfo.appendChild(date);
     imageCard.appendChild(imageInfo);
-
+    
     const imagesLikes = document.createElement("div");
     imagesLikes.classList.add("images-likes");
     imageInfo.appendChild(imagesLikes);
@@ -778,9 +773,9 @@ function renderGallery() {
   });
 }
 
-/**
- * Filter / Sort by
- */
+//Filter / Sort by
+
+var select = document.querySelector("select");
 
 const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
@@ -791,6 +786,7 @@ selected.addEventListener("click", () => {
   optionsContainer.classList.toggle("active");
 });
 
+//on change of filter, resorts media and rerenders gallery
 optionsContainer.addEventListener("change", function (e) {
   let target = e.target;
 
