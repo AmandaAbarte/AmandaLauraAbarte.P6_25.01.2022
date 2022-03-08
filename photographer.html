@@ -40,31 +40,34 @@
       <p>Order By</p>
 
       <div class="select-box">
-        <div class="options-container">
-          <div class="option" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="popularity">
-            <input type="radio" class="radio" id="popularity" name="category" />
-            <label for="popularity">
-              Popularity
-            </label>
-          </div>
+        <div class="options-container" role="listbox">
+          <fieldset>
+            <legend>Sort media by</legend>
+            <div class="option" role="option" aria-labelledby="sort-by">
+              <input type="radio" class="radio" id="popularity" name="category" />
+              <label for="popularity" tabindex="0">
+                Popularity
+              </label>
+            </div>
 
-          <div class="option" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="date">
-            <input type="radio" class="radio" id="date" name="category" />
-            <label for="date">
-              Date
-            </label>
-          </div>
+            <div class="option" role="option" aria-labelledby="sort-by">
+              <input type="radio" class="radio" id="date" name="category" />
+              <label for="date" tabindex="0">
+                Date
+              </label>
+            </div>
 
-          <div class="option" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="title">
-            <input type="radio" class="radio" id="title" name="category" />
-            <label for="title">
-              Title
-            </label>
-          </div>
+            <div class="option" role="option" aria-labelledby="sort-by">
+              <input type="radio" class="radio" id="title" name="category" />
+              <label for="title" tabindex="0">
+                Title
+              </label>
+            </div>
+          </fieldset>
 
         </div>
 
-        <div class="selected" role="button" aria-haspopup="listbox" aria-expanded="">
+        <div class="selected" id="sort-by" role="button" aria-haspopup="listbox" tabindex="0">
           <h2>Popular</h2>
         </div>
 
@@ -83,7 +86,7 @@
 
       <header>
         <h2>Contact me</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <img src="assets/icons/close.svg" onclick="closeModal()" alt="close form"/>
       </header>
       <form id="form">
         <div class="formData">

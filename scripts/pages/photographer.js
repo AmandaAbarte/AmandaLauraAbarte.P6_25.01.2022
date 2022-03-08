@@ -690,13 +690,19 @@ function renderGallery() {
         imgOrVid.setAttribute("data-fancybox", "video-gallery");
         imgOrVid.setAttribute("data-fancybox-group", "group1");
         imgOrVid.setAttribute("alt", media.title);
+        imgOrVid.setAttribute("tabindex", "0");
       } else {
         // Create a video tag & add the "video" attribute as src
         imgOrVid = document.createElement('a');
+        alt = document.createElement("p");
+        alt.innerHTML = "Video of" + media.title;
+        alt.classList.add("alt");
+        
         imgOrVid.setAttribute("href", "/assets/photographers/" + photographer.name + "/" + media.video);
         // `video-gallery` is a must-have for video in fancybox to link it with `gallery` for images
         imgOrVid.setAttribute("data-fancybox", "video-gallery");
         
+        imgOrVid.setAttribute("tabindex", "0");
         // Creating a video, inside a link (which triggers the fancybox)
         const video = document.createElement("video");
         const videoSrc = document.createElement("source");
@@ -707,6 +713,7 @@ function renderGallery() {
           video.setAttribute("data-preload", "false");
           video.appendChild(videoSrc);
           imgOrVid.appendChild(video);
+          imgOrVid.appendChild(alt);
         }
         
         const imageCard = document.createElement("article");
@@ -783,8 +790,21 @@ const optionsList = document.querySelectorAll(".option");
 
 //on click opens and closes dropdown
 selected.addEventListener("click", () => {
-  optionsContainer.classList.toggle("active");
+  displayOptions();
 });
+selected.addEventListener("keyup", (event) => {
+  var name = event.key;
+        if (name === "Enter") {
+            displayOptions();
+        }
+});
+
+function displayOptions() {
+  optionsContainer.classList.toggle("active");
+  selected.toggleAttribute("aria-expanded",);
+
+}
+
 
 //on change of filter, resorts media and rerenders gallery
 optionsContainer.addEventListener("change", function (e) {
