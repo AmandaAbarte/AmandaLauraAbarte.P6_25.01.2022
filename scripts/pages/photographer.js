@@ -595,11 +595,16 @@ const mediaArray = [
   },
 ];
 
+
+
 //gets photogapher id from url
 // const id = window.location.search.substr(1);
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
+
+
+
 
 /**
  * SOLID Principles
@@ -613,6 +618,7 @@ const id = urlParams.get("id");
  * 3. Create necessary elements & Manipulate the DOM & Loop over the media
  */
 const photographer = photographers.filter((item) => item.id == id)[0];
+
 
 //Populates Photographer header section
 function photographerHeader() {
@@ -637,8 +643,9 @@ function photographerHeader() {
 }
 photographerHeader();
 
-//shows total number of likes and price of photographer
 
+
+//shows total number of likes and price of photographer
 const photographerStats = document.querySelector(".photograph-stats");
 let totalLikes = 0;
 
@@ -660,16 +667,20 @@ likesCounterContainer.appendChild(totalLikesCounter);
 likesCounterContainer.appendChild(heartTotal);
 photographerStats.appendChild(price);
 
+
+
 //Filter through mediaArray for matches with photographer id
 const filteredMediaArray = mediaArray.filter(
   (item) => item.photographerId == id
 );
+
+
 //sorts media by most likes by default
 filteredMediaArray.sort(sortByLikes);
 renderGallery();
 
-//Render the images & videos
 
+//Render the images & videos
 function renderGallery() {
   // Empty the inner content from previous images + Reset the totalLikes counter
   const imagesContainer = document.querySelector(".images-container");
@@ -784,13 +795,15 @@ function renderGallery() {
   });
 }
 
-//Filter / Sort by
 
+//Filter / Sort by
 var select = document.querySelector("select");
 
 const selected = document.querySelector(".selected");
 const optionsContainer = document.querySelector(".options-container");
 const optionsList = document.querySelectorAll(".option");
+
+
 
 //on click opens and closes dropdown
 selected.addEventListener("click", () => {
@@ -836,8 +849,6 @@ optionsContainer.addEventListener("change", function (e) {
   optionsContainer.classList.toggle("active");
   renderGallery();
 });
-
-
 
 function sortByDate(a, b) {
   if (a.date < b.date) {
