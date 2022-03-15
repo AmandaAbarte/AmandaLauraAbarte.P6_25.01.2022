@@ -26,6 +26,9 @@
 
 
   <main id="main">
+
+    
+
     <header class="photograph-header">
       <section class="photographer-info">
         <h1 class="name"></h1>
@@ -35,12 +38,50 @@
       <button class="contact_button" onclick="displayModal()">Contact Me</button>
       <section class="portrait"></section>
     </header>
-
+    <div id="contact_modal">
+      <div class="modal">
+  
+        <header>
+          <h2>Contact me</h2>
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="close form"/>
+        </header>
+  
+        <form id="form">
+          <div class="formData">
+            <label for="first">First Name</label><br>
+            <span class="input-error " id="first_name_error"></span>
+            <input class="text-control" type="text" id="first" name="first" tabindex="0"/><br>
+          </div>
+  
+          <div class="formData">
+            <label for="last">Last Name</label><br>
+            <div class="input-error " id="last_name_error"></div>
+            <input class="text-control" type="text" id="last" name="last" tabindex="0"/>
+            <br>
+          </div>
+  
+          <div class="formData">
+            <label for="email">Email</label><br>
+            <span class="input-error " id="email_error"></span>
+            <input class="text-control" type="email" id="email" name="email" tabindex="0"/><br>
+          </div>
+  
+          <div class="formData">
+            <label for="message">Your Message</label><br>
+            <span class="input-error " id="message_error"></span>
+            <input class="text-control" type="text" id="message" name="message" tabindex="0"/>
+            <br>
+          </div>
+          <button class="contact_button" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    
     <div class="order-by">
       <p>Order By</p>
 
       <div class="select-box">
-        <div class="options-container" role="listbox">
+        <div class="options-container" aria-label="sort-by" role="listbox">
           <fieldset>
             <legend>Sort media by</legend>
             <div class="option" role="option" aria-labelledby="sort-by">
@@ -79,45 +120,10 @@
 
     <section class="photograph-stats">
     </section>
+
+
   </main>
 
-  <div id="contact_modal">
-    <div class="modal">
-
-      <header>
-        <h2>Contact me</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" alt="close form"/>
-      </header>
-      <form id="form">
-        <div class="formData">
-          <label for="first">First Name</label><br>
-          <span class="input-error " id="first_name_error"></span>
-          <input class="text-control" type="text" id="first" name="first" /><br>
-        </div>
-
-        <div class="formData">
-          <label for="last">Last Name</label><br>
-          <div class="input-error " id="last_name_error"></div>
-          <input class="text-control" type="text" id="last" name="last" />
-          <br>
-        </div>
-
-        <div class="formData">
-          <label for="email">Email</label><br>
-          <span class="input-error " id="email_error"></span>
-          <input class="text-control" type="email" id="email" name="email" /><br>
-        </div>
-
-        <div class="formData">
-          <label for="message">Your Message</label><br>
-          <span class="input-error " id="message_error"></span>
-          <input class="text-control" type="text" id="message" name="message" />
-          <br>
-        </div>
-        <button class="contact_button" type="submit">Send</button>
-      </form>
-    </div>
-  </div>
 
   <script src="/scripts/utils/contactForm.js"></script>
   <script src="/scripts/utils/customSelect.js"></script>

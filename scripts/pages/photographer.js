@@ -669,73 +669,77 @@ filteredMediaArray.sort(sortByLikes);
 renderGallery();
 
 //Render the images & videos
- 
+
 function renderGallery() {
   // Empty the inner content from previous images + Reset the totalLikes counter
   const imagesContainer = document.querySelector(".images-container");
   imagesContainer.innerHTML = "";
   totalLikes = 0;
-  
+
   // Then, Loops over each media that matches photographer id and then excecutes accordingly
   filteredMediaArray.forEach(function (media) {
     let imgOrVid;
-    
+
     // Add image or video, depending on available media source
     if (media.image) {
       imgOrVid = document.createElement("img");
       imgOrVid.setAttribute(
         "src",
         "/assets/photographers/" + photographer.name + "/" + media.image
-        );
-        imgOrVid.setAttribute("data-fancybox", "video-gallery");
-        imgOrVid.setAttribute("data-fancybox-group", "group1");
-        imgOrVid.setAttribute("alt", media.title);
-        imgOrVid.setAttribute("tabindex", "0");
-      } else {
-        // Create a video tag & add the "video" attribute as src
-        imgOrVid = document.createElement('a');
-        alt = document.createElement("p");
-        alt.innerHTML = "Video of" + media.title;
-        alt.classList.add("alt");
-        
-        imgOrVid.setAttribute("href", "/assets/photographers/" + photographer.name + "/" + media.video);
-        // `video-gallery` is a must-have for video in fancybox to link it with `gallery` for images
-        imgOrVid.setAttribute("data-fancybox", "video-gallery");
-        
-        imgOrVid.setAttribute("tabindex", "0");
-        // Creating a video, inside a link (which triggers the fancybox)
-        const video = document.createElement("video");
-        const videoSrc = document.createElement("source");
-        videoSrc.setAttribute(
-          "src",
-          "/assets/photographers/" + photographer.name + "/" + media.video
-          );
-          video.setAttribute("data-preload", "false");
-          video.appendChild(videoSrc);
-          imgOrVid.appendChild(video);
-          imgOrVid.appendChild(alt);
-        }
-        
-        const imageCard = document.createElement("article");
-        imageCard.classList.add("images-card");
+      );
+      imgOrVid.setAttribute("data-fancybox", "video-gallery");
+      imgOrVid.setAttribute("data-fancybox-group", "group1");
+      imgOrVid.setAttribute("alt", media.title);
+      imgOrVid.setAttribute("tabindex", "0");
+    } else {
+      // Create a video tag & add the "video" attribute as src
+      imgOrVid = document.createElement("a");
+      alt = document.createElement("p");
+      alt.innerHTML = "Video of" + media.title;
+      alt.classList.add("alt");
 
-        const title = document.createElement("p");
-        title.classList.add("title");
-        title.innerHTML = media.title;
-        
-        const date = document.createElement("p");
-        date.classList.add("date");
-        date.innerHTML = media.date;
-        
-        const likes = document.createElement("p");
-        likes.classList.add("likes");
-        likes.innerHTML = media.likes;
-        totalLikes = totalLikes + media.likes;
-        
-        //Heart button
+      imgOrVid.setAttribute(
+        "href",
+        "/assets/photographers/" + photographer.name + "/" + media.video
+      );
+      // `video-gallery` is a must-have for video in fancybox to link it with `gallery` for images
+      imgOrVid.setAttribute("data-fancybox", "video-gallery");
+
+      imgOrVid.setAttribute("tabindex", "0");
+      imgOrVid.setAttribute("title", media.title);
+      // Creating a video, inside a link (which triggers the fancybox)
+      const video = document.createElement("video");
+      const videoSrc = document.createElement("source");
+      videoSrc.setAttribute(
+        "src",
+        "/assets/photographers/" + photographer.name + "/" + media.video
+      );
+      video.setAttribute("data-preload", "false");
+      video.appendChild(videoSrc);
+      imgOrVid.appendChild(video);
+      imgOrVid.appendChild(alt);
+    }
+
+    const imageCard = document.createElement("article");
+    imageCard.classList.add("images-card");
+
+    const title = document.createElement("p");
+    title.classList.add("title");
+    title.innerHTML = media.title;
+
+    const date = document.createElement("p");
+    date.classList.add("date");
+    date.innerHTML = media.date;
+
+    const likes = document.createElement("p");
+    likes.classList.add("likes");
+    likes.innerHTML = media.likes;
+    totalLikes = totalLikes + media.likes;
+
+    //Heart button
     const heart = document.createElement("i");
     heart.classList.add("far", "fa-heart", "empty");
-    
+
     //when heart is clicked, likes increase and heart is filled or decrease if already clicked
     heart.addEventListener("click", function () {
       console.log(heart.className);
@@ -765,13 +769,13 @@ function renderGallery() {
     //media and information about media created and appended
     imagesContainer.appendChild(imageCard);
     imageCard.appendChild(imgOrVid);
-    
+
     const imageInfo = document.createElement("section");
     imageInfo.classList.add("images-info");
     imageInfo.appendChild(title);
     imageInfo.appendChild(date);
     imageCard.appendChild(imageInfo);
-    
+
     const imagesLikes = document.createElement("div");
     imagesLikes.classList.add("images-likes");
     imageInfo.appendChild(imagesLikes);
@@ -794,19 +798,18 @@ selected.addEventListener("click", () => {
 });
 selected.addEventListener("keyup", (event) => {
   var name = event.key;
-        if (name === "Enter") {
-            displayOptions();
-        }
+  if (name === "Enter") {
+    displayOptions();
+  }
 });
-
 function displayOptions() {
   optionsContainer.classList.toggle("active");
-  selected.toggleAttribute("aria-expanded",);
-
+  selected.toggleAttribute("aria-expanded");
 }
 
 
-//on change of filter, resorts media and rerenders gallery
+
+//on change of filter, re-sorts media and rerenders gallery
 optionsContainer.addEventListener("change", function (e) {
   let target = e.target;
 
@@ -833,6 +836,8 @@ optionsContainer.addEventListener("change", function (e) {
   optionsContainer.classList.toggle("active");
   renderGallery();
 });
+
+
 
 function sortByDate(a, b) {
   if (a.date < b.date) {
